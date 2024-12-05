@@ -5,7 +5,6 @@ from .forms import ReviewForm
 
 
 def review(request):
-
     if request.method == "POST":
         form = ReviewForm(request.POST)
 
