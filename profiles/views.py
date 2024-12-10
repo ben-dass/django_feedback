@@ -1,12 +1,16 @@
-from django.shortcuts import render
-from django.views import View
+from django.views.generic import CreateView, ListView
 
-# Create your views here.
+from profiles.models import UserProfile
 
 
-class CreateProfileView(View):
-    def get(self, request):
-        return render(request, "profiles/create_profile.html")
+class CreateProfileView(CreateView):
+    template_name = "profiles/create_profile.html"
+    model = UserProfile
+    fields = "__all__"
+    success_url = "/profiles/"
 
-    def post(self, request):
-        pass
+
+class ProfilesView(ListView):
+    template_name = "profiles/user_profiles.html"
+    model = UserProfile
+    context_object_name = "profiles"
